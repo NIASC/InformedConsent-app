@@ -1,0 +1,70 @@
+{"widget": {
+    "1": {
+		"name": "main",
+		"templates": {
+				"1": {"description":"Default","className":"icon-th-list"},
+				"2": {"description":"Questionnaire","className":"icon-th-large"}
+			}
+	},
+    "2": {
+        "name": "text",
+		"templates": {
+				"1": {"description":"Default","className":"icon-th-list"},
+				"2": {"description":"Pin to Questionnaire","className":"icon-th-large"},
+				"3": {"description":"Pin to Questionnaire | with disease combo","className":"icon-th-large"},
+				"4": {"description":"Pin to Questionnaire | Final page","className":"icon-th-large"},
+				"5": {"description":"Pin to Questionnaire | with Slider","className":"icon-th-large"}
+			}
+    },
+    "3": { 
+        "name": "news",
+		"templates": {
+				"1": {"description":"Default","className":"icon-th-list"},
+				"2": {"description":"Questionnaire","className":"icon-th-large"}
+			}
+    },
+    "4": {
+        "name": "list",
+		"templates": {
+				"1": {"description":"With Date","className":"icon-th-list"},
+				"2": {"description":"Questionnaire","className":"icon-th-large"}
+			}
+    },
+    "5": {
+        "name": "contact",
+		"templates": 1
+    },
+    "6": {
+        "name": "search",
+		"templates": 1
+    },
+    "7": {
+        "name": "gallery",
+		"templates": {
+				"1": {"description":"Default","className":"icon-th-list"},
+				"2": {"description":"Questionnaire","className":"icon-th-large"}
+		}
+    },
+    "8": {
+        "name": "redirect",
+		"templates": 1
+    },
+    "9": {
+        "name": "submenu_page",
+		"templates": 1
+    },
+    "10": {
+        "name": "video",
+		"templates": {
+				"1": {"description":"Default","className":"icon-th-list"},
+				"2": {"description":"Questionnaire","className":"icon-th-large"}
+		}
+    },
+    "21": {
+        "name": "Questionnaire",
+		"templates": {
+				"1": {"description":"Default","className":"icon-th-list"},
+				"2": {"description":"Questionnaire","className":"icon-th-large"}
+		}
+    }
+}}    

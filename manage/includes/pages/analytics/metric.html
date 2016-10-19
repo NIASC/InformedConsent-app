@@ -1,0 +1,31 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<h3>With JS</h3>
+		Visits : <span id='metric'></span>
+		
+		<h3>With HTML Attributes</h3>
+		Visits : <span data-oochart='metric' data-oochart-metric='ga:visits' data-oochart-start-date='30d' data-oochart-profile='75033752'></span>
+		
+		<script src='oocharts.js'></script>
+		<script type="text/javascript">
+
+			window.onload = function(){
+
+				oo.setAPIKey("30818a58431ecf9a43d042d42b30f4aac07a1cea");
+
+				oo.load(function(){
+
+					var metric = new oo.Metric("75033752", "30d");
+
+					metric.setMetric("ga:visits");
+
+					metric.draw('metric');
+
+				});
+			};
+
+		</script>
+	</body>
+</html>

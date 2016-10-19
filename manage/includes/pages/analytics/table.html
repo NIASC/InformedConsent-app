@@ -1,0 +1,33 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<h3>With JS</h3>
+		<div id='table'></div>
+
+		<h3>With HTML Attributes</h3>
+		<div data-oochart='table' data-oochart-start-date='30d' data-oochart-metrics='ga:visits,Visits' data-oochart-dimensions='ga:city,City' data-oochart-profile='75033752'></div>
+
+		<script src='oocharts.js'></script>
+		<script type="text/javascript">
+
+			window.onload = function(){
+
+				oo.setAPIKey("30818a58431ecf9a43d042d42b30f4aac07a1cea");
+
+				oo.load(function(){
+
+					var table = new oo.Table("75033752", "30d");
+
+					table.addMetric("ga:visits", "Visits");
+
+					table.addDimension("ga:city", "City");
+
+					table.draw('table');
+
+				});
+			};
+
+		</script>
+	</body>
+</html>

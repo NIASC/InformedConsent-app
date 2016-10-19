@@ -1,0 +1,33 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<h3>With JS</h3>
+		<div id='chart'></div>
+
+		<h3>With HTML Attributes</h3>
+		<div data-oochart='timeline' data-oochart-start-date='30d' data-oochart-metrics='ga:visits,Visits,ga:newVisits,New Visits' data-oochart-profile='88751774'></div>
+		
+		<script src='oocharts.js'></script>
+		<script type="text/javascript">
+
+			window.onload = function(){
+
+				oo.setAPIKey("4c04fa77652356d7d5050d513e772d901942ad11");
+
+				oo.load(function(){
+
+					var timeline = new oo.Timeline("88751774", "30d");
+
+					timeline.addMetric("ga:visits", "Visits");
+
+					timeline.addMetric("ga:newVisits", "New Visits");
+
+					timeline.draw('chart');
+
+				});
+			};
+
+		</script>
+	</body>
+</html>
