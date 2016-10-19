@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tesdt</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  </head>
+  <body>
+  <form>
+    <input type="text" name="nemid" id="nem" value=""> <button type="button" onclick="Validate()">Validate</button>
+    <input type="submit">
+  </form>
+  <script type="text/javascript">
+    function Validate() {
+      var new_window = window.open('logon.php', '', "width=250,height=300");
+      new_window.onbeforeunload = function(){
+        $("#nem").val($(new_window.document.getElementById("pid")).val());
+      }
+    }
+  </script>
+  </body>
+</html>

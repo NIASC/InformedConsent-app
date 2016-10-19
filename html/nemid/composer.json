@@ -1,0 +1,26 @@
+{
+  "name": "signaturgruppen/spsclient-php-demo",
+  "description": "Demo of PHP client for NemID ServiceProvider (TU) Services",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Signaturgruppen A/S",
+      "email": "info@signaturgruppen.dk"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://www.signaturgruppen.dk/download/satis/"
+    }
+  ],
+  "require": {
+    "signaturgruppen/spsclient-php": "1.*"
+  },
+  "autoload": {
+    "classmap": [
+      "./"
+    ]
+  }
+}
