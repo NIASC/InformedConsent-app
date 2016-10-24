@@ -17,24 +17,17 @@ $config['file_path'] = 'http://localhost/research/html/res/images/';
 $config['fpath'] = '../html/res/images/';
 $config['PDFpath'] = '../html/res/docs/';
 
-
 $config['site_address'] = 'http://localhost/research/html/';
-//$config['base_path'] = '/home/mydocume/public_html/';
-$config['base_path'] = 'C:/xampp/htdocs/research/html/';
+$config['base_path'] = '/Applications/MAMP/htdocs/research/html';
 $config['thumb_folder_name'] = 'thumb/';
 $config['slider_folder_name'] = 'slider/';
 $config['docs_folder_name'] = '../docs/';
 
 
 //file-manager
-//$config['file_folder'] = $config['base_path'] . 'res/images/file-manager/';
-//$config['file_folder_name'] = 'res/images/file-manager/';
-//$config['file_folder_url'] = $config['site_address'] . 'res/images/file-manager/';
-
-$config['file_folder'] = '/Applications/MAMP/htdocs/research/html/res/images/file-manager/';
-$config['file_folder_name'] = 'file-manager/';
+$config['file_folder'] = $config['base_path'] . 'res/images/file-manager/';
+$config['file_folder_name'] = 'res/images/file-manager/';
 $config['file_folder_url'] = $config['site_address'] . 'res/images/file-manager/';
-
 
 $config['temp_file_folder'] = $config['base_path'] . 'res/images/tmp/';
 $config['temp_file_folder_name'] = 'tmp/';

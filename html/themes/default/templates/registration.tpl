@@ -46,7 +46,7 @@
 					  </div>
 					  {/if}
 
-            <div class="alert alert-danger" style="display:none;">{$language.incorect_answer}</div>
+            			<div class="alert alert-danger" style="display:none;">{$language.incorect_answer}</div>
 					</div>
 					{/foreach}
 
@@ -59,9 +59,55 @@
 			</div>
 		</div>
 		{else if $info.section->style == 4}
-		<div data-step="contact-information" class="section-content registration-step row">
-        <input type="hidden" name="nemid" id="nemid" value="">
+		
+		{else if $info.section->style == 3}
+		<div data-step="disease" class="section-content registration-step row">
 			<div class="col-xs-12 col-sm-offset-1 col-sm-10">
+			  <div class="row">
+				<h1>{$info.content.0.title}</h1>
+				{$info.content.0.content}
+
+				<div class="form-inline row">
+				  <div class="form-group">
+					<div class="checkbox-inline">
+					  <input id="HavePrioritzedDiseases" type="checkbox" name="HavePrioritzedDiseases">
+					  <label for="HavePrioritzedDiseases"><span></span>{$language.no_disease}</label>
+					</div>
+				  </div>
+				  <div id="diseasesListContainer">
+					<div id="selectedDiseasesContainer"></div>
+					<div class="form-group">
+					  <select id="diseasesSelect" name="disease" class="form-control combobox">
+						<option disabled selected value> -- {$language.select_disease} -- </option>
+							{foreach $disease as $item}
+						<option value="{$item->id}">{$item->title}</option>
+							  {/foreach}
+					  </select>
+					  <button id="addDiseaseButton" class="btn btn-link">{$language.add}</button>
+					</div>
+					<div class="add-nlisted-disease-wrap selected-disease">
+					  <div class="form-group unlisted-disease">
+						<div class="input-group">
+						  <input type="text" value="" placeholder="Insert Unlisted Disease" class="form-control">
+						</div>
+						<button id="addNotListedDiseaseButton" class="btn btn-link">{$language.add}</button>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+              
+              
+              
+              
+              <input type="hidden" name="nemid" id="nemid" value="">
+              <div class="form-group contact-toggler">
+				  <div class="checkbox-inline">
+					<input id="contact_info" type="checkbox" name="contact_info" />
+					<label for="contact_info"><span></span>{$language.enter_contacts}</label>
+				  </div>
+				</div>
+              <div class="row" id="contact-info-optional" style="display:none;">
 			  <h1>{$language.contact_info}</h1>
 			  <div class="row">
 				<div class="form-horizontal col-xs-12 col-sm-6">
@@ -127,6 +173,7 @@
 				  </div>
 				</div>
 			  </div>
+              </div>
 			  <h1>{$language.consent}</h1>
 			  <div class="row">
 				<div class="form-group">
@@ -147,56 +194,20 @@
 					<label for="sendNewsletters"><span></span>{$language.newslatter_text}</label>
 				  </div>
 				</div>
-				<a href="#">{$language.request_nemid}</a>
 			  </div>
-			  <button class="btn btn-link btn-submit">{$language.next} →</button>
+			  <button class="btn btn-link btn-submit">{$language.sign_nemid} →</button>
+              
+			  <a class="btn btn-link btn-prev back-btn" onclick="prevStep()">&larr; {$language.back}</a>
 			</div>
+		</div>
+        <div data-step="contact-information" class="section-content registration-step row">
+			
 		  </div>
 		<div data-step="final" class="section-content registration-step row">
 			<div class="col-xs-12 col-sm-offset-1 col-sm-10">
 			  <div class="row">
 				<h1>{$info.content.0.title}</h1>
 				{$info.content.0.content}
-			  </div>
-			  <button class="btn btn-link btn-next">{$language.next} →</button>
-			  <a class="btn btn-link btn-prev back-btn" onclick="prevStep()">&larr; {$language.back}</a>
-			</div>
-		</div>
-		{else if $info.section->style == 3}
-		<div data-step="disease" class="section-content registration-step row">
-			<div class="col-xs-12 col-sm-offset-1 col-sm-10">
-			  <div class="row">
-				<h1>{$info.content.0.title}</h1>
-				{$info.content.0.content}
-
-				<div class="form-inline row">
-				  <div class="form-group">
-					<div class="checkbox-inline">
-					  <input id="HavePrioritzedDiseases" type="checkbox" name="HavePrioritzedDiseases">
-					  <label for="HavePrioritzedDiseases"><span></span>{$language.no_disease}</label>
-					</div>
-				  </div>
-				  <div id="diseasesListContainer">
-					<div id="selectedDiseasesContainer"></div>
-					<div class="form-group">
-					  <select id="diseasesSelect" name="disease" class="form-control combobox">
-						<option disabled selected value> -- {$language.select_disease} -- </option>
-							{foreach $disease as $item}
-						<option value="{$item->id}">{$item->title}</option>
-							  {/foreach}
-					  </select>
-					  <button id="addDiseaseButton" class="btn btn-link">{$language.add}</button>
-					</div>
-					<div class="add-nlisted-disease-wrap selected-disease">
-					  <div class="form-group unlisted-disease">
-						<div class="input-group">
-						  <input type="text" value="" placeholder="Insert Unlisted Disease" class="form-control">
-						</div>
-						<button id="addNotListedDiseaseButton" class="btn btn-link">{$language.add}</button>
-					  </div>
-					</div>
-				  </div>
-				</div>
 			  </div>
 			  <button class="btn btn-link btn-next">{$language.next} →</button>
 			  <a class="btn btn-link btn-prev back-btn" onclick="prevStep()">&larr; {$language.back}</a>

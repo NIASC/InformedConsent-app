@@ -50,7 +50,7 @@ $TRANSLATION = array(
 	'email' => 'Email',
 	'end_date' => 'End Date',
 	'file' => 'File',
-	'banner_file'=>'File <br> <small>Recomended sizes <br>Left & Right Footer: 290x105<br>Center Footer: 600x105<br>Header: 2000x704 <br>Footer: 1340x126</small>',
+	'banner_file'=>'File <br> <small>Recomended sizes <br>Left & Right Footer: 290x105<br>Center Footer: 600x105<br>Header: 2000x704</small>',
 	'file_already_exists' => 'File with that name already exists in destination directory.',
 	'file_deleted' => 'Successfully deleted file.',
 	'file_delete_error' => "Couldn't delete file. Please try again later.",
@@ -192,7 +192,8 @@ $TRANSLATION = array(
 	'new_question' => 'New Question',
 	'disease' => 'Chronic Disease',
 	'banner2section' => 'Display Banner in',
-	'all_sections' => 'All pages'
+	'all_sections' => 'All pages',
+	'icon' => 'Icon',
 );
 
 $region_arr = array(

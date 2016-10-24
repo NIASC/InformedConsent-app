@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2016-10-19 13:58:50
+<?php /* Smarty version Smarty-3.1.13, created on 2016-10-20 18:45:55
          compiled from "/Applications/MAMP/htdocs/research/html/themes/default/templates/main_page.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:141353513258075ffaae2dd3-83480170%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'abc878b2ff1acf822d79e834c414e9691f36185e' => 
     array (
       0 => '/Applications/MAMP/htdocs/research/html/themes/default/templates/main_page.tpl',
-      1 => 1476821560,
+      1 => 1476987104,
       2 => 'file',
     ),
   ),
@@ -15,61 +15,48 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_58075ffac4d8a7_49908500',
   'variables' => 
   array (
-    'language' => 0,
+    'middle_menu' => 0,
+    'menu' => 0,
     'header_banner' => 0,
+    'language' => 0,
     'about_study' => 0,
     'site_url' => 0,
     'site_data' => 0,
     'news_1' => 0,
     'item' => 0,
     'registration_page' => 0,
+    'study_block' => 0,
+    'block' => 0,
     'info' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_58075ffac4d8a7_49908500',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_58075ffac4d8a7_49908500')) {function content_58075ffac4d8a7_49908500($_smarty_tpl) {?><nav id="section-navbar" class="navbar navbar-with-icons">
+	<?php if ($_smarty_tpl->tpl_vars['middle_menu']->value){?>
     <ul class="nav navbar-nav">
-      <li>
-        <a href="#about">
-          <div class="link-wrapper">
-            <span class="icon icon-about"></span>
-            <span class="desc hidden-xs"><?php echo $_smarty_tpl->tpl_vars['language']->value['about_study'];?>
+    	<?php  $_smarty_tpl->tpl_vars['menu'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['menu']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['middle_menu']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['menu']->key => $_smarty_tpl->tpl_vars['menu']->value){
+$_smarty_tpl->tpl_vars['menu']->_loop = true;
+?>
+		<li>
+        	<a href="#home_<?php echo $_smarty_tpl->tpl_vars['menu']->value->id;?>
+">
+            <div class="link-wrapper">
+                <span class="icon <?php echo $_smarty_tpl->tpl_vars['menu']->value->icon;?>
+"></span>
+        		<span class="desc hidden-xs"><?php echo $_smarty_tpl->tpl_vars['menu']->value->name;?>
 </span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#how">
-          <div class="link-wrapper">
-            <span class="icon icon-how"></span>
-            <span class="desc hidden-xs"><?php echo $_smarty_tpl->tpl_vars['language']->value['how_works'];?>
-</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#running">
-          <div class="link-wrapper">
-            <span class="icon icon-running"></span>
-            <span class="desc hidden-xs"><?php echo $_smarty_tpl->tpl_vars['language']->value['who_is_running'];?>
-</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#who">
-          <div class="link-wrapper">
-            <span class="icon icon-who"></span>
-            <span class="desc hidden-xs"><?php echo $_smarty_tpl->tpl_vars['language']->value['participate'];?>
-</span>
-          </div>
-        </a>
-      </li>
+			</div>
+        	</a>
+		</li>
+      	<?php } ?>
     </ul>
+    <?php }?>
   </nav>
 
 
@@ -92,7 +79,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <?php }?>
 
   <?php if ($_smarty_tpl->tpl_vars['about_study']->value[1]){?>
-<section id="about" class="container-fluid section">
+<section id="home_<?php echo $_smarty_tpl->tpl_vars['about_study']->value[1][0]['section_id'];?>
+" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-about pull-right"></span>
@@ -121,7 +109,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   <?php }?>
 
   <?php if ($_smarty_tpl->tpl_vars['news_1']->value){?>
-  <section id="news" class="container-fluid section">
+  <section id="home_<?php echo $_smarty_tpl->tpl_vars['news_1']->value[0]['section_id'];?>
+" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-news pull-right"></span>
@@ -189,7 +178,8 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
   <?php }?>
 
   <?php if ($_smarty_tpl->tpl_vars['about_study']->value[2]){?>
-  <section id="how" class="container-fluid section">
+  <section id="home_<?php echo $_smarty_tpl->tpl_vars['about_study']->value[2][0]['section_id'];?>
+" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-how pull-right"></span>
@@ -234,50 +224,24 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
               </div>
               <div class="row">
                 <div class="row-height">
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-enroll"></div>
-                        <h3><?php echo $_smarty_tpl->tpl_vars['language']->value['consent_enroll'];?>
+                	<?php  $_smarty_tpl->tpl_vars['block'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['block']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['study_block']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['block']->key => $_smarty_tpl->tpl_vars['block']->value){
+$_smarty_tpl->tpl_vars['block']->_loop = true;
+?>
+                    <div class="col-xs-12 col-sm-height">
+                        <div class="inside inside-full-height">
+                          <div class="guide-desc">
+                            <div class="icon <?php echo $_smarty_tpl->tpl_vars['block']->value['icon'];?>
+"></div>
+                            <h3><?php echo $_smarty_tpl->tpl_vars['block']->value['name'];?>
 </h3>
-                        <div class="guide-desc-text"><?php echo $_smarty_tpl->tpl_vars['language']->value['understand_risk'];?>
+                            <div class="guide-desc-text"><?php echo $_smarty_tpl->tpl_vars['block']->value['content'];?>
 </div>
-                      </div>
+                          </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-task"></div>
-                        <h3><?php echo $_smarty_tpl->tpl_vars['language']->value['perform_tasks'];?>
-</h3>
-                        <div class="guide-desc-text"><?php echo $_smarty_tpl->tpl_vars['language']->value['ask_tasks'];?>
-</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-health"></div>
-                        <h3><?php echo $_smarty_tpl->tpl_vars['language']->value['track_health'];?>
-</h3>
-                        <div class="guide-desc-text"><?php echo $_smarty_tpl->tpl_vars['language']->value['use_data'];?>
-</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-science"></div>
-                        <h3><?php echo $_smarty_tpl->tpl_vars['language']->value['make_discoveries'];?>
-</h3>
-                        <div class="guide-desc-text"><?php echo $_smarty_tpl->tpl_vars['language']->value['make_breakthroughs'];?>
-</div>
-                      </div>
-                    </div>
-                  </div>
+                  	<?php } ?>
                 </div>
               </div>
             </div>
@@ -289,7 +253,8 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
   <?php }?>
 
   <?php if ($_smarty_tpl->tpl_vars['about_study']->value[3]){?>
-  <section id="running" class="container-fluid section">
+  <section id="home_<?php echo $_smarty_tpl->tpl_vars['about_study']->value[3][0]['section_id'];?>
+" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-running pull-right"></span>
@@ -342,26 +307,6 @@ $_smarty_tpl->tpl_vars['info']->_loop = true;
 					  </div>
 					</div>
 				 </div>
-              	<div class="item">
-					<div class="carousel-content">
-					  <div class="container-fluid">
-						<div class="row">
-							<?php if ($_smarty_tpl->tpl_vars['info']->value['thumbnail']){?>
-						  <div class="col-xs-offset-2 col-xs-8 col-sm-offset-0 col-sm-3">
-							<img src="res/images/slider/<?php echo $_smarty_tpl->tpl_vars['info']->value['thumbnail'];?>
-"/>
-						  </div>
-							<?php }?>
-						  <div class="col-xs-12 col-sm-9">
-							<h3><?php echo $_smarty_tpl->tpl_vars['info']->value['title'];?>
-</h3>
-							<span><?php echo $_smarty_tpl->tpl_vars['info']->value['description'];?>
-</span>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				 </div>
 			  	<?php } ?>
             </div>
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -382,7 +327,8 @@ $_smarty_tpl->tpl_vars['info']->_loop = true;
   <?php }?>
 
   <?php if ($_smarty_tpl->tpl_vars['about_study']->value[4]){?>
-  <section id="who" class="container-fluid section">
+  <section id="home_<?php echo $_smarty_tpl->tpl_vars['about_study']->value[4][0]['section_id'];?>
+" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-who pull-right"></span>

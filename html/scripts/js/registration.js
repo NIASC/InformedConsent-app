@@ -36,20 +36,8 @@ var validationSteps = {
     return false;
   },
   "disease": function() {
-    if(!document.forms["registration-form"]["HavePrioritzedDiseases"].checked &&
-      (document.forms["registration-form"]["selectedDiseases[]"] == null || document.forms["registration-form"]["selectedDiseases[]"].length == 0)) {
-
-      if($('.registration-step[data-step="disease"] .alert').length == 0)
-        $('.registration-step[data-step="disease"] button.btn-next').before(
-          validationMessage("To continue please choes diseases!")
-        );
-      return false;
-    }
-
-    return true;
-  },
-  "contact-information": function() {
-    var mailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	  
+	var mailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     var phoneReg = /^([+]46)\s*(7\d{1})\s*(\d{4})\s*(\d{3})$/;
 
@@ -69,6 +57,21 @@ var validationSteps = {
     var message = "";
 
     var result = true;
+	
+	
+	  
+    if(!document.forms["registration-form"]["HavePrioritzedDiseases"].checked &&
+      (document.forms["registration-form"]["selectedDiseases[]"] == null || document.forms["registration-form"]["selectedDiseases[]"].length == 0)) {
+
+      if($('.registration-step[data-step="disease"] .alert').length == 0)
+        $('.registration-step[data-step="disease"] button.btn-next').before(
+          validationMessage("To continue please choes diseases!")
+        );
+      result = false;
+    }
+	
+	
+    /*
     if(email == "" || emailAgain == "" || phone == "" || phoneAgain == "" ||
       isStoreboxAccount == null || (isStoreboxAccount == '1' && !isSome &&
       (storeboxEmail == "" || storeboxEmailAgain == "" || storeboxPhone == "" || storeboxPhoneAgain == ""))) {
@@ -116,7 +119,7 @@ var validationSteps = {
         message += "Storebox tel no. and Storebox tel no. Again not match.<br/>";
         result = false;
       }
-    }
+    }*/
 
     if(!result)
       $('.registration-step[data-step="contact-information"] .alert').remove();
@@ -125,7 +128,11 @@ var validationSteps = {
       );
       console.log(result);
     return result;
-  }
+  
+  
+  
+  },
+  "contact-information": function() {}
 };
 
 $(document).ready(function() {
@@ -276,6 +283,11 @@ function prevStep() {
 	}
 }
 
+
+	$('#contact_info').change(function(){
+		$('#contact-info-optional').toggle('slow');
+	});
+
 function addDisease(id, name) {
   if(!isNaN(id) && $('#selected' + id).length == 0) {
 
@@ -300,7 +312,7 @@ function removeSelectedDisease(element, evt) {
 }
 
 function validationMessage(message) {
-  if(message==''||message==null) {
+  if(message == '' || message == null) {
     return '';
   }
 

@@ -101,10 +101,11 @@ $language = array(
 'make_discoveries' => 'Scientists make discoveries',
 'make_breakthroughs' => 'Scientists will use your data to make breakthroughs in medical research and treatments.',
 'who_is_running' => 'Who is Running this study',
-'study_sponsored' => 'This study is sponsored by Nordic eScience Center of Excelence.',
+'study_sponsored' => 'This study is sponsored by Sage Bionetworks with funding from the Robert Wood Johnson Foundation.',
 'about_study' => 'About this study',
 'how_works' => 'How this Study Works',
 'participate' => 'Who is Eligible to Participate',
-
+'sign_nemid' => 'Sign with NEMID',
+'enter_contacts' => 'Enter your contact information (optional)',
 );
 ?>

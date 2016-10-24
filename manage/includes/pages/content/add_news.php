@@ -135,7 +135,8 @@ if (isset($_POST['doAdd'])) {
 		if(in_array($important_type, array(1,2,3)) && $_FILES['photo']['thumbnail'][$key]) {
 			
 			$src = imagecreatefrom($config['fpath'].$photo);	
-			$tmp = ResizeSemiAbstractTop($src, $config['slider_post_images']['width'], $config['slider_post_images']['height']); // crop & scale
+			$tmp = ResizeSemiAbstractTop($src, $config['slider_post_images']['width'], $config['slider_post_images']['height']); 		
+			// crop & scale
 			createIMAGE ($config['fpath'].$photo, $tmp, $config['fpath'].$config['slider_folder_name'].$photo, 100); // save image 
 		}
 

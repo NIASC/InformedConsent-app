@@ -1,38 +1,18 @@
 <nav id="section-navbar" class="navbar navbar-with-icons">
+	{if $middle_menu}
     <ul class="nav navbar-nav">
-      <li>
-        <a href="#about">
-          <div class="link-wrapper">
-            <span class="icon icon-about"></span>
-            <span class="desc hidden-xs">{$language.about_study}</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#how">
-          <div class="link-wrapper">
-            <span class="icon icon-how"></span>
-            <span class="desc hidden-xs">{$language.how_works}</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#running">
-          <div class="link-wrapper">
-            <span class="icon icon-running"></span>
-            <span class="desc hidden-xs">{$language.who_is_running}</span>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a href="#who">
-          <div class="link-wrapper">
-            <span class="icon icon-who"></span>
-            <span class="desc hidden-xs">{$language.participate}</span>
-          </div>
-        </a>
-      </li>
+    	{foreach $middle_menu as $menu}
+		<li>
+        	<a href="#home_{$menu->id}">
+            <div class="link-wrapper">
+                <span class="icon {$menu->icon}"></span>
+        		<span class="desc hidden-xs">{$menu->name}</span>
+			</div>
+        	</a>
+		</li>
+      	{/foreach}
     </ul>
+    {/if}
   </nav>
 
 
@@ -52,7 +32,7 @@
   {/if}
 
   {if $about_study.1}
-<section id="about" class="container-fluid section">
+<section id="home_{$about_study.1.0.section_id}" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-about pull-right"></span>
@@ -75,7 +55,7 @@
   {/if}
 
   {if $news_1}
-  <section id="news" class="container-fluid section">
+  <section id="home_{$news_1.0.section_id}" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-news pull-right"></span>
@@ -120,7 +100,7 @@
   {/if}
 
   {if $about_study.2}
-  <section id="how" class="container-fluid section">
+  <section id="home_{$about_study.2.0.section_id}" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-how pull-right"></span>
@@ -153,42 +133,17 @@
               </div>
               <div class="row">
                 <div class="row-height">
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-enroll"></div>
-                        <h3>{$language.consent_enroll}</h3>
-                        <div class="guide-desc-text">{$language.understand_risk}</div>
-                      </div>
+                	{foreach $study_block as $block}
+                    <div class="col-xs-12 col-sm-height">
+                        <div class="inside inside-full-height">
+                          <div class="guide-desc">
+                            <div class="icon {$block.icon}"></div>
+                            <h3>{$block.name}</h3>
+                            <div class="guide-desc-text">{$block.content}</div>
+                          </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-task"></div>
-                        <h3>{$language.perform_tasks}</h3>
-                        <div class="guide-desc-text">{$language.ask_tasks}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-health"></div>
-                        <h3>{$language.track_health}</h3>
-                        <div class="guide-desc-text">{$language.use_data}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xs-12 col-sm-height">
-                    <div class="inside inside-full-height">
-                      <div class="guide-desc">
-                        <div class="icon icon-science"></div>
-                        <h3>{$language.make_discoveries}</h3>
-                        <div class="guide-desc-text">{$language.make_breakthroughs}</div>
-                      </div>
-                    </div>
-                  </div>
+                  	{/foreach}
                 </div>
               </div>
             </div>
@@ -200,7 +155,7 @@
   {/if}
 
   {if $about_study.3}
-  <section id="running" class="container-fluid section">
+  <section id="home_{$about_study.3.0.section_id}" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-running pull-right"></span>
@@ -242,23 +197,6 @@
 					  </div>
 					</div>
 				 </div>
-              	<div class="item">
-					<div class="carousel-content">
-					  <div class="container-fluid">
-						<div class="row">
-							{if $info.thumbnail}
-						  <div class="col-xs-offset-2 col-xs-8 col-sm-offset-0 col-sm-3">
-							<img src="res/images/slider/{$info.thumbnail}"/>
-						  </div>
-							{/if}
-						  <div class="col-xs-12 col-sm-9">
-							<h3>{$info.title}</h3>
-							<span>{$info.description}</span>
-						  </div>
-						</div>
-					  </div>
-					</div>
-				 </div>
 			  	{/foreach}
             </div>
             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -277,7 +215,7 @@
   {/if}
 
   {if $about_study.4}
-  <section id="who" class="container-fluid section">
+  <section id="home_{$about_study.4.0.section_id}" class="container-fluid section">
     <div class="row">
       <div class="col-xs-2 col-sm-1 section-icon">
         <span class="icon icon-who pull-right"></span>

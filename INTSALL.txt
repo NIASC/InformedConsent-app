@@ -1,21 +1,27 @@
-/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot -p research < /Users/davbzh/Downloads/research/research.sql
+#MYSQL
+create database ‘research’ and load from ./sql/research.sql
 
-/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot -p research 
-
-/Applications/MAMP/Library/bin/mysqldump --host=localhost -uroot -proot --databases research > /Applications/MAMP/htdocs/research/research.sql
-
+#
 in HTML folder is the website
 in manage folder is CMS
 
 html/includes/database/mysql/config.php -> Here enter database parameters (password etc)
 html/includes/constants.php -> Here web page parameters
+
+#Replace mysite.se with your site address
+$config['site_address'] = 'http://mysite.se/research/html/';
+#Replace fullpath with full path of directory where research is residing 
+$config['base_path'] = '/fullpath/research/html';
+
+#Also you must chage 
 define('CONSENT_URL', 'http://localhost:8080/html/test.php'); - This is the url where PID is sent
 define('USER_DELETE_URL', 'http://localhost:8080/html/test.php'); - This is the url  where nemid, email is sent if Windraw Consent is pressed
 
-Also you must chage 
 define('SITE_URL', 'http://localhost:8080/research/html/'); application URL
 define('IN_FOLDER', 'research/html/'); here define('IN_FOLDER', '') where applicated is located
 
+
+###
 translation of web can be done from here html/includes/language/en.php
 
 *********************************************************************************************

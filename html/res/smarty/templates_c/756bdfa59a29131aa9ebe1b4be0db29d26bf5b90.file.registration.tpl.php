@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2016-10-19 14:29:11
+<?php /* Smarty version Smarty-3.1.13, created on 2016-10-24 13:43:25
          compiled from "/Applications/MAMP/htdocs/research/html/themes/default/templates/registration.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2108495741580767174ad3a3-34657045%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '756bdfa59a29131aa9ebe1b4be0db29d26bf5b90' => 
     array (
       0 => '/Applications/MAMP/htdocs/research/html/themes/default/templates/registration.tpl',
-      1 => 1476870513,
+      1 => 1477307430,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_58076717685104_14997026',
   'variables' => 
   array (
     'setting_data' => 0,
@@ -25,8 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'disease' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_58076717685104_14997026',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_58076717685104_14997026')) {function content_58076717685104_14997026($_smarty_tpl) {?><section id="registration" class="container-fluid section">
     <form id="registration-form" method="post" autocomplete="off">
@@ -110,7 +110,7 @@ _4"><span></span><?php echo $_smarty_tpl->tpl_vars['item']->value->param_4;?>
 					  </div>
 					  <?php }?>
 
-            <div class="alert alert-danger" style="display:none;"><?php echo $_smarty_tpl->tpl_vars['language']->value['incorect_answer'];?>
+            			<div class="alert alert-danger" style="display:none;"><?php echo $_smarty_tpl->tpl_vars['language']->value['incorect_answer'];?>
 </div>
 					</div>
 					<?php } ?>
@@ -127,9 +127,68 @@ _4"><span></span><?php echo $_smarty_tpl->tpl_vars['item']->value->param_4;?>
 			</div>
 		</div>
 		<?php }elseif($_smarty_tpl->tpl_vars['info']->value['section']->style==4){?>
-		<div data-step="contact-information" class="section-content registration-step row">
-        <input type="hidden" name="nemid" id="nemid" value="">
+		
+		<?php }elseif($_smarty_tpl->tpl_vars['info']->value['section']->style==3){?>
+		<div data-step="disease" class="section-content registration-step row">
 			<div class="col-xs-12 col-sm-offset-1 col-sm-10">
+			  <div class="row">
+				<h1><?php echo $_smarty_tpl->tpl_vars['info']->value['content'][0]['title'];?>
+</h1>
+				<?php echo $_smarty_tpl->tpl_vars['info']->value['content'][0]['content'];?>
+
+
+				<div class="form-inline row">
+				  <div class="form-group">
+					<div class="checkbox-inline">
+					  <input id="HavePrioritzedDiseases" type="checkbox" name="HavePrioritzedDiseases">
+					  <label for="HavePrioritzedDiseases"><span></span><?php echo $_smarty_tpl->tpl_vars['language']->value['no_disease'];?>
+</label>
+					</div>
+				  </div>
+				  <div id="diseasesListContainer">
+					<div id="selectedDiseasesContainer"></div>
+					<div class="form-group">
+					  <select id="diseasesSelect" name="disease" class="form-control combobox">
+						<option disabled selected value> -- <?php echo $_smarty_tpl->tpl_vars['language']->value['select_disease'];?>
+ -- </option>
+							<?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['disease']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
+$_smarty_tpl->tpl_vars['item']->_loop = true;
+?>
+						<option value="<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
+"><?php echo $_smarty_tpl->tpl_vars['item']->value->title;?>
+</option>
+							  <?php } ?>
+					  </select>
+					  <button id="addDiseaseButton" class="btn btn-link"><?php echo $_smarty_tpl->tpl_vars['language']->value['add'];?>
+</button>
+					</div>
+					<div class="add-nlisted-disease-wrap selected-disease">
+					  <div class="form-group unlisted-disease">
+						<div class="input-group">
+						  <input type="text" value="" placeholder="Insert Unlisted Disease" class="form-control">
+						</div>
+						<button id="addNotListedDiseaseButton" class="btn btn-link"><?php echo $_smarty_tpl->tpl_vars['language']->value['add'];?>
+</button>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			  </div>
+              
+              
+              
+              
+              <input type="hidden" name="nemid" id="nemid" value="">
+              <div class="form-group contact-toggler">
+				  <div class="checkbox-inline">
+					<input id="contact_info" type="checkbox" name="contact_info" />
+					<label for="contact_info"><span></span><?php echo $_smarty_tpl->tpl_vars['language']->value['enter_contacts'];?>
+</label>
+				  </div>
+				</div>
+              <div class="row" id="contact-info-optional" style="display:none;">
 			  <h1><?php echo $_smarty_tpl->tpl_vars['language']->value['contact_info'];?>
 </h1>
 			  <div class="row">
@@ -209,6 +268,7 @@ _4"><span></span><?php echo $_smarty_tpl->tpl_vars['item']->value->param_4;?>
 				  </div>
 				</div>
 			  </div>
+              </div>
 			  <h1><?php echo $_smarty_tpl->tpl_vars['language']->value['consent'];?>
 </h1>
 			  <div class="row">
@@ -233,12 +293,16 @@ _4"><span></span><?php echo $_smarty_tpl->tpl_vars['item']->value->param_4;?>
 </label>
 				  </div>
 				</div>
-				<a href="#"><?php echo $_smarty_tpl->tpl_vars['language']->value['request_nemid'];?>
-</a>
 			  </div>
-			  <button class="btn btn-link btn-submit"><?php echo $_smarty_tpl->tpl_vars['language']->value['next'];?>
+			  <button class="btn btn-link btn-submit"><?php echo $_smarty_tpl->tpl_vars['language']->value['sign_nemid'];?>
  →</button>
+              
+			  <a class="btn btn-link btn-prev back-btn" onclick="prevStep()">&larr; <?php echo $_smarty_tpl->tpl_vars['language']->value['back'];?>
+</a>
 			</div>
+		</div>
+        <div data-step="contact-information" class="section-content registration-step row">
+			
 		  </div>
 		<div data-step="final" class="section-content registration-step row">
 			<div class="col-xs-12 col-sm-offset-1 col-sm-10">
@@ -247,60 +311,6 @@ _4"><span></span><?php echo $_smarty_tpl->tpl_vars['item']->value->param_4;?>
 </h1>
 				<?php echo $_smarty_tpl->tpl_vars['info']->value['content'][0]['content'];?>
 
-			  </div>
-			  <button class="btn btn-link btn-next"><?php echo $_smarty_tpl->tpl_vars['language']->value['next'];?>
- →</button>
-			  <a class="btn btn-link btn-prev back-btn" onclick="prevStep()">&larr; <?php echo $_smarty_tpl->tpl_vars['language']->value['back'];?>
-</a>
-			</div>
-		</div>
-		<?php }elseif($_smarty_tpl->tpl_vars['info']->value['section']->style==3){?>
-		<div data-step="disease" class="section-content registration-step row">
-			<div class="col-xs-12 col-sm-offset-1 col-sm-10">
-			  <div class="row">
-				<h1><?php echo $_smarty_tpl->tpl_vars['info']->value['content'][0]['title'];?>
-</h1>
-				<?php echo $_smarty_tpl->tpl_vars['info']->value['content'][0]['content'];?>
-
-
-				<div class="form-inline row">
-				  <div class="form-group">
-					<div class="checkbox-inline">
-					  <input id="HavePrioritzedDiseases" type="checkbox" name="HavePrioritzedDiseases">
-					  <label for="HavePrioritzedDiseases"><span></span><?php echo $_smarty_tpl->tpl_vars['language']->value['no_disease'];?>
-</label>
-					</div>
-				  </div>
-				  <div id="diseasesListContainer">
-					<div id="selectedDiseasesContainer"></div>
-					<div class="form-group">
-					  <select id="diseasesSelect" name="disease" class="form-control combobox">
-						<option disabled selected value> -- <?php echo $_smarty_tpl->tpl_vars['language']->value['select_disease'];?>
- -- </option>
-							<?php  $_smarty_tpl->tpl_vars['item'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['item']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['disease']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['item']->key => $_smarty_tpl->tpl_vars['item']->value){
-$_smarty_tpl->tpl_vars['item']->_loop = true;
-?>
-						<option value="<?php echo $_smarty_tpl->tpl_vars['item']->value->id;?>
-"><?php echo $_smarty_tpl->tpl_vars['item']->value->title;?>
-</option>
-							  <?php } ?>
-					  </select>
-					  <button id="addDiseaseButton" class="btn btn-link"><?php echo $_smarty_tpl->tpl_vars['language']->value['add'];?>
-</button>
-					</div>
-					<div class="add-nlisted-disease-wrap selected-disease">
-					  <div class="form-group unlisted-disease">
-						<div class="input-group">
-						  <input type="text" value="" placeholder="Insert Unlisted Disease" class="form-control">
-						</div>
-						<button id="addNotListedDiseaseButton" class="btn btn-link"><?php echo $_smarty_tpl->tpl_vars['language']->value['add'];?>
-</button>
-					  </div>
-					</div>
-				  </div>
-				</div>
 			  </div>
 			  <button class="btn btn-link btn-next"><?php echo $_smarty_tpl->tpl_vars['language']->value['next'];?>
  →</button>

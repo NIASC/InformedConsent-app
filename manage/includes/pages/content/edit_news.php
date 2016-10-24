@@ -24,7 +24,7 @@ if(INSYS != 'pc777') die('404');
 								</label>
 								<input type="text" name="edit_photo_desc['.$image_row->id.']" class="img_desc" value="'.$image_row->name.'"/>
 							</td>
-							<td><a id="'.$image_row->id.'" class="btn btn-mini btn-danger" title="სურათის წაშლა"><i class="icon-remove"></i></a></td>
+							<td><a id="'.$image_row->id.'" class="btn btn-mini btn-danger" title="Remove image"><i class="icon-remove"></i></a></td>
 						</tr>';
 	}
 	$photo = $inf_image_arr;
@@ -34,7 +34,7 @@ if(INSYS != 'pc777') die('404');
 		$photo = '<tr>
 					<td><img src="' . $config['file_path'] .'thumb/'. $get_info_data->thumbnail . '"/></td>
 					<td>
-						<a class="thumbnail-remove-button btn btn-mini btn-danger" title="სურათის წაშლა"><i class="icon-remove"></i></a>
+						<a class="thumbnail-remove-button btn btn-mini btn-danger" title="Remove image"><i class="icon-remove"></i></a>
 					</td>
 				</tr>';
 	}
