@@ -10,6 +10,7 @@ if (isset($_POST['doAdd'])) {
 	$parent_id = (int) extractPost('parent_id');
 	$type = (int) extractPost('type');
 	$active = extractPost('active');
+	$icon = extractPost('icon');
 	$style = (int)extractPost('style');
 	if (get_magic_quotes_gpc()) {
 		$name = stripslashes($name);
@@ -86,6 +87,7 @@ if (isset($_POST['doAdd'])) {
    								`type` = " . $type . ",
    								`active` = '" . DBM::escape($active) . "',
 								`style` = '".DBM::escape($style)."',
+								`icon` = '".DBM::escape($icon)."',
    								`sort` = " . $real_sort . "";
    			
    			DBM::query($insert_query, $database_link);
@@ -151,6 +153,29 @@ if (isset($_POST['doAdd'])) {
 				<th class="text-right"><?php echo $TRANSLATION['name']; ?></th>
 				<td>
 					<input type="text" name="name" class="input-xxlarge" />
+				</td>
+				
+			</tr>
+		
+			<tr class="icons-combo">
+				
+				<th class="text-right"><?php echo $TRANSLATION['icon']; ?></th>
+				<td><input type="hidden" name="icon"/>
+                	<div class="well carousel-search hidden-sm">
+                        <div class="btn-group"> <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Default <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li data-value="" class="active">No Icon</li>
+                                <li data-value="icon-about"><img src="bootstrap/img/1.png"/></li>
+                                <li data-value="icon-how"><img src="bootstrap/img/2.png"/></li>
+                                <li data-value="icon-running"><img src="bootstrap/img/3.png"/></li>
+                                <li data-value="icon-who"><img src="bootstrap/img/4.png"/></li>
+                                <li data-value="icon-enroll"><img src="bootstrap/img/5.png"/></li>
+                                <li data-value="icon-task"><img src="bootstrap/img/6.png"/></li>
+                                <li data-value="icon-health"><img src="bootstrap/img/7.png"/></li>
+                                <li data-value="icon-science"><img src="bootstrap/img/8.png"/></li>
+                            </ul>
+                        </div>
+                    </div>
 				</td>
 				
 			</tr>

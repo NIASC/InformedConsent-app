@@ -305,7 +305,8 @@ function generateMenuByType($siteData, $menu_id, $is_sub, $database_link) {
 				bc_sections.language,
 				bc_sections.slug,
 				bc_sections.sort,
-				bc_sections.type
+				bc_sections.type,
+				bc_sections.icon
 			FROM
 				bc_sections
 			WHERE
@@ -331,7 +332,8 @@ function generateMenuByType($siteData, $menu_id, $is_sub, $database_link) {
 				bc_sections.language,
 				bc_sections.slug,
 				bc_sections.sort,
-				bc_sections.type
+				bc_sections.type,
+				bc_sections.icon
 			FROM
 				bc_sections
 			WHERE
@@ -372,7 +374,8 @@ function menu_by_parent($siteData, $parent, $menu_id, $database_link) {
 				bc_sections.language,
 				bc_sections.slug,
 				bc_sections.sort,
-				bc_sections.type 
+				bc_sections.type ,
+				bc_sections.icon 
 			FROM 
 				bc_sections 
 			WHERE 
@@ -881,6 +884,7 @@ function info_by_id ($lang, $id, $count, $sort_by = " `bc_info`.`start_date` DES
 				`bc_info`.`url`,
 				`bc_info`.`start_date`, 
 				`bc_sections`.`name` as `section_name`, 
+				`bc_sections`.`id` as `section_id`, 
 				`bc_sections`.`slug` as `section_slug`
 			FROM 
 				`bc_sections` 
@@ -908,6 +912,7 @@ function info_by_id ($lang, $id, $count, $sort_by = " `bc_info`.`start_date` DES
 						'url' => 'http://'.str_replace('http://', '', $data->url),
 						'job' => $data->url,
 						'date' => date_transform($data->start_date, $language),
+						'section_id' => $data->section_id,
 						'section_slug' => $data->section_slug
 					);
 			

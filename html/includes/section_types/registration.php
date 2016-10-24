@@ -34,62 +34,79 @@ $url = CONSENT_URL;
 		$registration_date = date('Y-m-d H:i:s');
 		// $name = extractPost('name');
 		$email = trim(extractPost('email'));
-		$remail=trim(extractPost('emailAgain'));
+		$remail = trim(extractPost('emailAgain'));
 
 		$sbemail = trim(extractPost('storeboxEmail'));
-		$rsbemail=trim(extractPost('storeboxEmailAgain'));
-		$sbphone=trim(extractPost('storeboxPhone'));
-		$rsbphone=trim(extractPost('storeboxPhoneAgain'));
-		$nemid=trim(extractPost('nemid'));
+		$rsbemail = trim(extractPost('storeboxEmailAgain'));
+		$sbphone = trim(extractPost('storeboxPhone'));
+		$rsbphone = trim(extractPost('storeboxPhoneAgain'));
+		$nemid = trim(extractPost('nemid'));
 		// $age = extractPost('age');
 		$phone = extractPost('phone');
 		$rphone = extractPost('phoneAgain');
 		// $region = extractPost('region');
 
-		if(!check_email($email)) {$error['email'] = $language['email_format_error'];}
+		//if(!check_email($email)) {$error['email'] = $language['email_format_error'];}
 		// if($name == '') {$error['name'] = $language['name_error'];}
 		// if($age == '') {$error['age'] = $language['age_error'];}
-		if($phone == '') {$error['phone'] = $language['phone_error'];}
+		/*if($phone == '') {$error['phone'] = $language['phone_error'];}
 
 		if($sbemail == '') {$error['storeboxemail'] = $language['storebox_empty_email'];}
 		// if($region < 1) {$error['region'] = $language['region_error'];}
-
+		*/
 		if($nemid == '') $error['nemid'] = $language['verify_nemid'];
-
+		/*
 		if( $phone != $rphone && $phone != '' ) {$error['phone'] = $language['phone_again'];}
 		if( $email != $remail && $email != '' ) {$error['email'] = $language['phone_again'];}
 		if($sbemail != '' && $rsbemail != $sbemail) {$error['storebox-email'] = $language['email_doesnt_match'];}
 		if($sbphone != '' && $rsbphone != $sbphone) {$error['storebox-phone'] = $language['phone_doesnt_match'];}
+		*/
 		//check email unique
 		if( count($error) == 0 ) {
 
-			$unique_query = "SELECT * FROM `bc_users` WHERE `email` = '".DBM::escape($email)."'";
+			if($email != '') {
 
-			if($result = DBM::queryData($unique_query, $database_link)) {
+				$unique_query = "SELECT * FROM `bc_users` WHERE `email` = '".DBM::escape($email)."'";
 
-				$row = DBM::numRows($result);
-			}
+				if($result = DBM::queryData($unique_query, $database_link)) {
 
-			if( $row > 0) $error['email_unique_error'] = $language['email_unique_error'];
+					$row = DBM::numRows($result);
+				}
+				if( $row > 0) $error['email_unique_error'] = $language['email_unique_error'];
 
-			$unique_query = "SELECT * FROM `bc_users` WHERE `phone` = '".DBM::escape($phone)."'";
-			if($result = DBM::queryData($unique_query, $database_link)) {
-				$row = DBM::numRows($result);
-			}
-			if( $row > 0) $error['phone_unique_error'] = $language['unique_phone'];
+			} else $email = NULL;
 
-			$unique_query = "SELECT * FROM `bc_users` WHERE `storebox_email` = '".DBM::escape($sbemail)."'";
-			if($result = DBM::queryData($unique_query, $database_link)) {
-				$row = DBM::numRows($result);
-			}
-			if( $row > 0) $error['storebox_email_unique_error'] = $language['storebox_unique_phone'];
 
-			$unique_query = "SELECT * FROM `bc_users` WHERE `storebox_phone` = '".DBM::escape($sbphone)."'";
-			if($result = DBM::queryData($unique_query, $database_link)) {
-				$row = DBM::numRows($result);
-			}
-			if( $row > 0) $error['storebox_phone_unique_error'] = $language['storebox_unique_phone'];
+			if($phone != '') {
 
+				$unique_query = "SELECT * FROM `bc_users` WHERE `phone` = '".DBM::escape($phone)."'";
+				if($result = DBM::queryData($unique_query, $database_link)) {
+					$row = DBM::numRows($result);
+				}
+				if( $row > 0) $error['phone_unique_error'] = $language['unique_phone'];
+
+			}  else $phone = NULL;
+
+
+			if($sbemail != '') {$unique_query = "SELECT * FROM `bc_users` WHERE `storebox_email` = '".DBM::escape($sbemail)."'";
+
+				if($result = DBM::queryData($unique_query, $database_link)) {
+					$row = DBM::numRows($result);
+				}
+				if( $row > 0) $error['storebox_email_unique_error'] = $language['storebox_unique_phone'];
+
+			} else $sbemail = NULL;
+
+
+			if($sbphone != '') {
+
+				$unique_query = "SELECT * FROM `bc_users` WHERE `storebox_phone` = '".DBM::escape($sbphone)."'";
+				if($result = DBM::queryData($unique_query, $database_link)) {
+					$row = DBM::numRows($result);
+				}
+				if( $row > 0) $error['storebox_phone_unique_error'] = $language['storebox_unique_phone'];
+
+			} else $sbphone = NULL;
 		}
 
 
@@ -108,6 +125,7 @@ $url = CONSENT_URL;
 										`nemid` = '". DBM::escape($nemid) ."'
 							";
 			// die($insert_query);
+			//die(json_encode(array('query' => $insert_query)));
 			if( DBM::query($insert_query, $database_link) ) {
 				$insert_user_id = DBM::insertID($database_link);
 
@@ -127,87 +145,88 @@ $url = CONSENT_URL;
 				// header("Location: ".SITE_URL.$siteData['language'].'/'.$siteData['section_slug']."/?registration_done".$str);
 
 				// Add diseases to DB
-				$dis=array();
-				foreach($_POST['selectedDiseases'] as $v) {
-					if(is_numeric($v)) {
-						$query = "SELECT * FROM `bc_disease` WHERE `id` = ".$v.";";
-						if($query = DBM::queryData($query, $database_link)) {
-							while($row = DBM::fetchObject($query)) {
-								$query1="INSERT INTO `bc_user_disease`
-													SET
-														`user_id` = ". DBM::escape($insert_user_id) .",
-														`disease_id` = ". DBM::escape($v) ."
-												";
-								DBM::query($query1, $database_link);
-								$dis[] = $row->title;
+				$dis = array();
+				if(isset($_POST['selectedDiseases']))
+					{foreach($_POST['selectedDiseases'] as $v) {
+						if(is_numeric($v)) {
+							$query = "SELECT * FROM `bc_disease` WHERE `id` = ".$v.";";
+							if($query = DBM::queryData($query, $database_link)) {
+								while($row = DBM::fetchObject($query)) {
+									$query1="INSERT INTO `bc_user_disease`
+														SET
+															`user_id` = ". DBM::escape($insert_user_id) .",
+															`disease_id` = ". DBM::escape($v) ."
+													";
+									DBM::query($query1, $database_link);
+									$dis[] = $row->title;
+								}
 							}
 						}
-					}
-					else {
-						if(strlen(trim($v)) > 3 ) {
-							$dis[] = $v;
-							$query="SELECT * from `bc_disease` WHERE `title` = '" . DBM::escape(trim($v)) . "';";
-							$insertNew=true;
-							if($query = DBM::queryData($query, $database_link)) {
-								$rownum=DBM::numRows($query);
-								if($rownum>0) {
-									$insertNew = false;
-									while($row = DBM::fetchObject($query)) {
+						else {
+							if(strlen(trim($v)) > 3 ) {
+								$dis[] = $v;
+								$query = "SELECT * from `bc_disease` WHERE `title` = '" . DBM::escape(trim($v)) . "';";
+								$insertNew = true;
+								if($query = DBM::queryData($query, $database_link)) {
+									$rownum = DBM::numRows($query);
+									if($rownum>0) {
+										$insertNew = false;
+										while($row = DBM::fetchObject($query)) {
+											$query1="INSERT INTO `bc_user_disease`
+																SET
+																	`user_id` = ". DBM::escape($insert_user_id) .",
+																	`disease_id` = ". $row->pk ."
+															";
+											DBM::query($query1, $database_link);
+										}
+									}
+								}
+
+								if($insertNew) {
+									$query = "INSERT INTO `bc_disease`
+														SET
+															`title` = '". DBM::escape(trim($v)) ."',
+															`language` = '" . DBM::escape($siteData['language']) . "',
+															`active` = 'N';
+									";
+									if( $query = DBM::query($query,$database_link) ) {
+										$disease_id = DBM::insertID($database_link);
 										$query1="INSERT INTO `bc_user_disease`
 															SET
 																`user_id` = ". DBM::escape($insert_user_id) .",
-																`disease_id` = ". $row->pk ."
+																`disease_id` = ". DBM::escape($disease_id) ."
 														";
+
 										DBM::query($query1, $database_link);
 									}
 								}
 							}
-
-							if($insertNew) {
-								$query = "INSERT INTO `bc_disease`
-													SET
-														`title` = '". DBM::escape(trim($v)) ."',
-														`language` = '" . DBM::escape($siteData['language']) . "',
-														`active` = 'N';
-								";
-								if( $query = DBM::query($query,$database_link) ) {
-									$disease_id = DBM::insertID($database_link);
-									$query1="INSERT INTO `bc_user_disease`
-														SET
-															`user_id` = ". DBM::escape($insert_user_id) .",
-															`disease_id` = ". DBM::escape($disease_id) ."
-													";
-
-									DBM::query($query1, $database_link);
-								}
-							}
 						}
-					}
-					
 
-					if(isset($url)) {
-						$data = array(
-							'email' => $email,
-							'phone' => $phone,
-							'storebox_email' => $sbemail,
-							'storebox_phone' => $sbphone,
-							'registration_date' => $registration_date,
-							'nemid' =>  $nemid
-						);
 
-						// use key 'http' even if you send the request to https://...
-						$options = array(
-						    'http' => array(
-						        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-						        'method'  => 'POST',
-						        'content' => http_build_query(array('data' => json_encode($data)))
-						    )
-						);
-						$context  = stream_context_create($options);
-						$result = file_get_contents($url, false, $context);
-						if ($result === FALSE) { /* Handle error */ }
-					}
-				}
+						if(isset($url)) {
+							$data = array(
+								'email' => $email,
+								'phone' => $phone,
+								'storebox_email' => $sbemail,
+								'storebox_phone' => $sbphone,
+								'registration_date' => $registration_date,
+								'nemid' =>  $nemid
+							);
+
+							// use key 'http' even if you send the request to https://...
+							$options = array(
+							    'http' => array(
+							        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+							        'method'  => 'POST',
+							        'content' => http_build_query(array('data' => json_encode($data)))
+							    )
+							);
+							$context  = stream_context_create($options);
+							$result = file_get_contents($url, false, $context);
+							if ($result === FALSE) { /* Handle error */ }
+						}
+					}}
 
 				echo json_encode(array('error' => false, 'message' => 'success'));
 			}

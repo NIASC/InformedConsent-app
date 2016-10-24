@@ -19,6 +19,7 @@ $get_section_query = "SELECT
 					`bc_sections`.`slug`,
 					`bc_sections`.`type`,
 					`bc_sections`.`active`,
+					`bc_sections`.`icon`,
 					`bc_sections`.`sort`
 				FROM
 					`bc_sections`

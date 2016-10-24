@@ -461,6 +461,17 @@ function dropDown($first, $second) {
 	}
 
 }
+
+// Combobox Deleted
+function bootstrap_dd($first, $second) {
+
+	if ($first == $second) {
+
+		return 'active';
+
+	}
+
+}
 //
 function is_checked ($first, $second) {
 

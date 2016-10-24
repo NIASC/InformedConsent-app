@@ -23,6 +23,7 @@ if (isset($_POST['doEdit'])) {
 	$type = (int) extractPost('type');
 	$active = extractPost('active');
 	$style = (int)extractPost('style');
+	$icon = extractPost('icon');
 	if (get_magic_quotes_gpc()) {
 		$name = stripslashes($name);
 		$description = stripslashes($description);
@@ -49,7 +50,8 @@ if (isset($_POST['doEdit'])) {
    							`parent_id` = '" . $parent_id . "',
    							`slug` = '" . $generated_slug . "',
    							`active` = '" . DBM::escape($active) . "',
-							`style` = '".DBM::escape($style)."'
+							`style` = '".DBM::escape($style)."',
+							`icon` = '".DBM::escape($icon)."'
    								WHERE
    							`pk` = " . $pk;
    		
@@ -120,6 +122,7 @@ $get_section_query = "SELECT
 					`bc_sections`.`type`,
 					`bc_sections`.`active`,
 					`bc_sections`.`style`,
+					`bc_sections`.`icon`,
 					`bc_sections`.`sort`
 						FROM
 					`bc_sections`
@@ -164,6 +167,45 @@ $real_slug = end($slug_array);
 				<th class="text-right"><?php echo $TRANSLATION['name']; ?></th>
 				<td>
 					<input type="text" name="name" class="input-xxlarge" value="<?php echo $get_section_data->name; ?>" />
+				</td>
+				
+			</tr>
+		
+			<tr class="icons-combo">
+				
+				<th class="text-right"><?php echo $TRANSLATION['icon']; ?></th>
+				<td><input type="hidden" name="icon" value="<?php echo $get_section_data->icon; ?>"/>
+                	<div class="well carousel-search hidden-sm">
+                        <div class="btn-group"> <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Default <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li data-value="">No Icon</li>
+                                <li data-value="icon-about" class="<?php echo bootstrap_dd('icon-about', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/1.png"/>
+                                </li>
+                                <li data-value="icon-how" class="<?php echo bootstrap_dd('icon-how', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/2.png"/>
+                                </li>
+                                <li data-value="icon-running" class="<?php echo bootstrap_dd('icon-running', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/3.png"/>
+                                </li>
+                                <li data-value="icon-who" class="<?php echo bootstrap_dd('icon-who', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/4.png"/>
+                                </li>
+                                <li data-value="icon-enroll" class="<?php echo bootstrap_dd('icon-enroll', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/5.png"/>
+                                </li>
+                                <li data-value="icon-task" class="<?php echo bootstrap_dd('icon-task', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/6.png"/>
+                                </li>
+                                <li data-value="icon-health" class="<?php echo bootstrap_dd('icon-health', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/7.png"/>
+                                </li>
+                                <li data-value="icon-science" class="<?php echo bootstrap_dd('icon-science', $get_section_data->icon); ?>">
+                                	<img src="bootstrap/img/8.png"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 				</td>
 				
 			</tr>

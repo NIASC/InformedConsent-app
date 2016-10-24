@@ -39,15 +39,70 @@ if($result = DBM::queryData($query, $database_link)) {
 	}
 }
 
+//   1/4 block
+$query = "SELECT 
+				`bc_info`.`title`,
+				`bc_info`.`slug` AS `info_slug`,
+				`bc_info`.`description`,
+				`bc_info`.`content`,
+				`bc_info`.`thumbnail`,
+				`bc_sections`.`name`,
+				`bc_sections`.`icon`,
+				`bc_sections`.`slug` AS `section_slug`,
+				`bc_sections`.`id` AS `section_id`
+			FROM `bc_info`,`bc_sections`, `bc_section_to_menu`
+			WHERE 
+				`bc_info`.`section_id` = `bc_sections`.`id` AND 
+				`bc_info`.`language` = `bc_sections`.`language` AND 
+				`bc_info`.`language` = '".$siteData['language']."' AND 
+				`bc_sections`.`pk` = `bc_section_to_menu`.`section_pk` AND 
+				`bc_section_to_menu`.`menu_id` = 6 
+			ORDER BY `bc_info`.`start_date` DESC
+			";
+	if($result = DBM::queryData($query, $database_link)) {
+	
+		while($row = DBM::fetchArray($result)) 
+		
+		$study_block[] =  $row;
+	}
 
-$smarty->assign('news_1', $news_1);
+//slider posts
+
+	$query = "SELECT 
+				`bc_info`.`title`,
+				`bc_info`.`slug` AS `info_slug`,
+				`bc_info`.`description`,
+				`bc_info`.`thumbnail`,
+				`bc_sections`.`name`,
+				`bc_sections`.`slug` AS `section_slug`,
+				`bc_sections`.`id` AS `section_id`
+			FROM `bc_info`,`bc_sections`
+			WHERE 
+				`bc_info`.`section_id` = `bc_sections`.`id` AND 
+				`bc_info`.`language` = `bc_sections`.`language` AND 
+				`bc_info`.`language` = '".$siteData['language']."' AND 
+				`bc_info`.`important_type` = 1 
+			ORDER BY `bc_info`.`start_date` DESC
+			";
+	if($result = DBM::queryData($query, $database_link)) {
+	
+		while($row = DBM::fetchArray($result)) 
+		
+		$about_study[3][] =  $row;
+	}
+
 
 $about_study[1] = info_by_id($siteData['language'], 6, 1);
 $about_study[2] = info_by_id($siteData['language'], 7, 1);
-$about_study[3] = info_by_id($siteData['language'], 8, 10);
+//$about_study[3] = info_by_id($siteData['language'], 8, 10);
 $about_study[4] = info_by_id($siteData['language'], 9, 1);
+$middle_menu = generateMenuByType($siteData, $menu_id = 4, $is_sub = false, $database_link);
 
+
+$smarty->assign('middle_menu', $middle_menu);
+$smarty->assign('study_block', $study_block);
 $smarty->assign('about_study', $about_study);
+$smarty->assign('news_1', $news_1);
 
 $siteData['section_img'] = '';
 

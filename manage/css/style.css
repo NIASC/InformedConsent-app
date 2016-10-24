@@ -265,3 +265,7 @@ body {
 .info_images img {height:55px;}
 .passive {color:#adadad;}
 .section-list {float:right;margin-right:20%;}
+.well {	padding: 0;	border: none;}
+.icons-combo .dropdown-menu {min-width:240px; text-align:center;}
+.icons-combo .dropdown-menu li {padding:10px; float: left; width: 23%;}
+.icons-combo .dropdown-menu li:hover {background:#eaeaea;}

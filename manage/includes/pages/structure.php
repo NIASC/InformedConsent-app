@@ -46,7 +46,14 @@ if ($current_act = extractGet('act')) {
 ?>
 		
 		<hr />
-	    
+		<script type="text/javascript">
+            $(".icons-combo .dropdown-menu li").click(function(){
+                var selText = $(this).html();
+                $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+				$("input[name=icon]").attr('value', $(this).data("value"));
+            });
+			$(".icons-combo .dropdown-menu li").parents('.btn-group').find('.dropdown-toggle').html($(".icons-combo .dropdown-menu li.active").html()+' <span class="caret"></span>');
+        </script>
 	    <div class="footer">
 	    	<p>&copy; 2014</p>
 	    </div>
