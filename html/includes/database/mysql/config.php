@@ -5,7 +5,7 @@ $config = array();
 // Database
 $config['database']['host'] = 'localhost';
 $config['database']['username'] = 'root';
-$config['database']['password'] = 'root';
+$config['database']['password'] = '';
 $config['database']['database'] = 'research';
 $config['fpath'] = '';
 
