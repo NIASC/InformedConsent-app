@@ -1,5 +1,8 @@
 #MYSQL
-create database ‘research’ and load from ./sql/research.sql
+in ./sql/research.sql change localhost:8080 to your site address
+
+Then create database ‘research’ and load from ./sql/research.sql
+
 
 #
 in HTML folder is the website
@@ -11,13 +14,13 @@ html/includes/constants.php -> Here web page parameters
 #Replace mysite.se with your site address
 $config['site_address'] = 'http://mysite.se/research/html/';
 #Replace fullpath with full path of directory where research is residing 
-$config['base_path'] = '/fullpath/research/html';
+$config['base_path'] = '/fullpath/InformedConsent-app/html';
 
 #Also you must chage 
 define('CONSENT_URL', 'http://localhost:8080/html/test.php'); - This is the url where PID is sent
 define('USER_DELETE_URL', 'http://localhost:8080/html/test.php'); - This is the url  where nemid, email is sent if Windraw Consent is pressed
 
-define('SITE_URL', 'http://localhost:8080/research/html/'); application URL
+define('SITE_URL', 'http://localhost:8080/InformedConsent-app/html/'); application URL
 define('IN_FOLDER', 'research/html/'); here define('IN_FOLDER', '') where applicated is located
 
 
