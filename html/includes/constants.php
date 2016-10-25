@@ -1,10 +1,10 @@
 <?php
 
 // Full HTTP Address (Trial Slash Required)
-define('SITE_URL', 'http://localhost:8888/research/html/');
+define('SITE_URL', 'http://localhost:8888/InformedConsent-app/html/');
 
 // If In Folder
-define('IN_FOLDER', 'research/html/');
+define('IN_FOLDER', 'InformedConsent-app/html/');
 
 // If Using GET Query String
 define('GET_QUERY_STRING', 0);
