@@ -17,7 +17,10 @@ $config['site_address'] = 'http://mysite.se/research/html/';
 $config['base_path'] = '/fullpath/InformedConsent-app/html';
 
 #Also you must chage 
+// Consent Data Endpoint
 define('CONSENT_URL', 'http://localhost:8080/html/test.php'); - This is the url where PID is sent
+
+// Withdraw Consent Data Endpoint
 define('USER_DELETE_URL', 'http://localhost:8080/html/test.php'); - This is the url  where nemid, email is sent if Windraw Consent is pressed
 
 define('SITE_URL', 'http://localhost:8080/InformedConsent-app/html/'); application URL
