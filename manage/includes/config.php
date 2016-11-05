@@ -5,20 +5,20 @@ $config = array();
 // Database
 
 $config['database']['host'] = 'localhost';
-$config['database']['username'] = 'username';
-$config['database']['password'] = 'password';
+$config['database']['username'] = 'root';
+$config['database']['password'] = 'root';
 $config['database']['database'] = 'research';
 
 // General
 
-$config['languages'] = array('en');
-$config['site_url'] = 'http://nordicehealth.se/InformedConsent-app/manage/';
-$config['file_path'] = 'http://nordicehealth.se/InformedConsent-app/html/res/images/';
+$config['languages'] = array('en', 'dk');
+$config['site_url'] = 'http://localhost:8888/InformedConsent-app/manage/';
+$config['file_path'] = 'http://localhost:8888/InformedConsent-app/html/res/images/';
 $config['fpath'] = '../html/res/images/';
 $config['PDFpath'] = '../html/res/docs/';
 
-$config['site_address'] = 'http://nordicehealth.se/InformedConsent-app/html/';
-$config['base_path'] = '/home/vyokcyrl/public_html/InformedConsent-app/html/';
+$config['site_address'] = 'http://localhost:8888/InformedConsent-app/html/';
+$config['base_path'] = '/Applications/MAMP/htdocs/InformedConsent-app/html/';
 $config['thumb_folder_name'] = 'thumb/';
 $config['slider_folder_name'] = 'slider/';
 $config['docs_folder_name'] = '../docs/';

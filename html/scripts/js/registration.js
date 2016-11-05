@@ -1,5 +1,5 @@
 
-$('#phone, #phoneAgain, #storeboxPhone, #storeboxPhoneAgain').mask($("#mobile-format").val()+"9 9999 999", {placeholder: $("#mobile-format").val()+"X XXXX XXX"}).focus(function(){
+$('#phone, #phoneAgain, #storeboxPhone, #storeboxPhoneAgain').mask($("#mobile-format").val()+"99999999", {placeholder: $("#mobile-format").val()+"XXXXXXXX"}).focus(function(){
   setCaretToPos(this, 5);
 });
 $(".registration-step .comment").hide();
@@ -36,7 +36,7 @@ var validationSteps = {
     return false;
   },
   "disease": function() {
-	  
+
 	var mailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     var phoneReg = /^([+]46)\s*(7\d{1})\s*(\d{4})\s*(\d{3})$/;
@@ -57,9 +57,9 @@ var validationSteps = {
     var message = "";
 
     var result = true;
-	
-	
-	  
+
+
+
     if(!document.forms["registration-form"]["HavePrioritzedDiseases"].checked &&
       (document.forms["registration-form"]["selectedDiseases[]"] == null || document.forms["registration-form"]["selectedDiseases[]"].length == 0)) {
 
@@ -69,8 +69,8 @@ var validationSteps = {
         );
       result = false;
     }
-	
-	
+
+
     /*
     if(email == "" || emailAgain == "" || phone == "" || phoneAgain == "" ||
       isStoreboxAccount == null || (isStoreboxAccount == '1' && !isSome &&
@@ -128,9 +128,9 @@ var validationSteps = {
       );
       console.log(result);
     return result;
-  
-  
-  
+
+
+
   },
   "contact-information": function() {}
 };

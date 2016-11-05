@@ -71,6 +71,15 @@
 						<div class="container-fluid">
 							<div class="row">
 								{$top_menu}
+                                <ul id="language-dd">
+                                	{foreach $language_array as $key => $value}
+                                    <li {if $site_data.language == $key}class="active"{/if}>
+                                    <a {if $site_data.language != $key} href="{$site_url}{$key}/{$site_data.section_slug_by_language.$key}{if $sectionData.info_slug}/{$sectionData.info_slug.$key}{/if}{$site_data.dirty_url}"{/if} title="{$key}">
+                                    {$value}
+                                    </a>
+                                    </li>
+                                    {/foreach}
+                                </ul>
 							</div>
 							<div class="row">
 								{$main_menu}

@@ -24,6 +24,13 @@ a {
   -moz-transition: background-color .2s;
   -o-transition: background-color .2s;
 }
+#language-dd {
+  transition: all .2s;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -o-transition: all .2s;
+}
+#language-dd li { color: #F38286;}
 
 .navbar a {
   line-height: inherit !important;
@@ -1269,6 +1276,7 @@ footer.container-fluid.footer.full-banner img {width:100%;max-width:inherit;}
 .slider {
   width: 100%;
   overflow: hidden;
+  padding-bottom: 40px;
 }
 
 .slider ul {
@@ -1323,5 +1331,41 @@ footer.container-fluid.footer.full-banner img {width:100%;max-width:inherit;}
   color: #ef4461;
   padding:0 10px;
 }
+
+.slider .btn span {
+  color: #ffffff;
+  font-size: 50px!important;
+  padding: 5px;
+  border-radius: 100px;
+  background-color: #ef4461;
+}
+
 .contact-toggler {margin:50px 0 20px;}
 
+.windraw #nemid {
+  width: 70%;
+  display: inline-block;
+  background: #ffffff;
+}
+#language-dd {
+    position: fixed;
+    float: left;
+    top: 10px;
+    background: #a7a9ab;
+    right: -62px;
+    font-size: 14px;
+    z-index: 999;
+}
+#language-dd:hover {right: 0;}
+ul#language-dd li {
+    border-top: solid #fff 1px;
+    padding: 10px 10px 10px 30px;
+    line-height: 10px;
+	list-style: none;
+}
+ul#language-dd li.active {
+    background: #ef4461;
+}
+ul#language-dd a {
+    color: #fff;
+}
