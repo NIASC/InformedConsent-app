@@ -116,12 +116,12 @@
             <div class="container-fluid">
               <div class="row">
 			  	{if $about_study.2.0.thumbnail}
-                <div class="col-sm-7 animation-wrap">
+                <div class="col-sm-12 animation-wrap">
                   <!-- <img src="res/images/{$about_study.2.0.thumbnail}"/> -->
                   {include file="slider.tpl"}
                 </div>
 				{/if}
-                <div class="col-sm-5">
+                <div class="col-sm-12">
                   <div class="guide-content">
                     <span class="content-text">{$about_study.2.0.description}</span>
                     <a class="content-text" href="{$site_url}{$site_data.language}/{$about_study.2.0.section_slug}">{$language.read_more}</a>

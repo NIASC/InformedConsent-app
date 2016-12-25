@@ -15,7 +15,7 @@ $url = CONSENT_URL;
 			if (strpos($k, 'radio') !== false) {
     			$radioValues[$k] = $v;
 
-					$query = 'SELECT * FROM `bc_info_additional` 	WHERE `id`='.preg_replace("/[^0-9]/","",$k);
+					$query = 'SELECT * FROM `bc_info_additional` WHERE `id`='.preg_replace("/[^0-9]/","",$k);
 					if($query = DBM::queryData($query, $database_link)) {
 						while($row = DBM::fetchObject($query)) {
 								if( $row->value !=$v) {
@@ -41,26 +41,43 @@ $url = CONSENT_URL;
 		$sbphone = trim(extractPost('storeboxPhone'));
 		$rsbphone = trim(extractPost('storeboxPhoneAgain'));
 		$nemid = trim(extractPost('nemid'));
-		// $age = extractPost('age');
+		
+		$accept_in_project = extractPost('accept_in_project')?'Y':'N';
+		$similar_projects = extractPost('acceptDedidentifedDataAccessed')?'Y':'N';
+		$contact_me = extractPost('contatMeIfProjectExpanded')?'Y':'N';
+		$newsletter = extractPost('sendNewsletters')?'Y':'N';
+		
 		$phone = extractPost('phone');
 		$rphone = extractPost('phoneAgain');
-		// $region = extractPost('region');
+		
+		$isStoreboxAccount = extractPost('isStoreboxAccount');
+		$isSome = extractPost('isSome');
+		
+		if($isSome) {
+			
+			$sbemail = $email;
+			$rsbemail = $remail;
+			$sbphone = $phone;
+			$rsbphone = $rphone;
+		}
+		
+		if($setting_data['contactinfo_optional'] == 2) {
+			
+			if(!check_email($email)) {$error['email'] = $language['email_format_error'];}
+			if($phone == '') {$error['phone'] = $language['phone_error'];}
 
-		//if(!check_email($email)) {$error['email'] = $language['email_format_error'];}
-		// if($name == '') {$error['name'] = $language['name_error'];}
-		// if($age == '') {$error['age'] = $language['age_error'];}
-		/*if($phone == '') {$error['phone'] = $language['phone_error'];}
-
-		if($sbemail == '') {$error['storeboxemail'] = $language['storebox_empty_email'];}
-		// if($region < 1) {$error['region'] = $language['region_error'];}
-		*/
+			if($sbemail == '') {$error['storeboxemail'] = $language['storebox_empty_email'];}
+			// if($region < 1) {$error['region'] = $language['region_error'];}
+			
+			
+			if( $phone != $rphone && $phone != '' ) {$error['phone'] = $language['phone_again'];}
+			if( $email != $remail && $email != '' ) {$error['email'] = $language['phone_again'];}
+			if($sbemail != '' && $rsbemail != $sbemail) {$error['storebox-email'] = $language['email_doesnt_match'];}
+			if($sbphone != '' && $rsbphone != $sbphone) {$error['storebox-phone'] = $language['phone_doesnt_match'];}
+			
+		}
 		if($nemid == '') $error['nemid'] = $language['verify_nemid'];
-		/*
-		if( $phone != $rphone && $phone != '' ) {$error['phone'] = $language['phone_again'];}
-		if( $email != $remail && $email != '' ) {$error['email'] = $language['phone_again'];}
-		if($sbemail != '' && $rsbemail != $sbemail) {$error['storebox-email'] = $language['email_doesnt_match'];}
-		if($sbphone != '' && $rsbphone != $sbphone) {$error['storebox-phone'] = $language['phone_doesnt_match'];}
-		*/
+		
 		//check email unique
 		if( count($error) == 0 ) {
 
@@ -122,7 +139,11 @@ $url = CONSENT_URL;
 										`storebox_email` = '".DBM::escape($sbemail)."',
 										`storebox_phone` = '".DBM::escape($sbphone)."',
 										`registration_date` = '".DBM::escape($registration_date)."',
-										`nemid` = '". DBM::escape($nemid) ."'
+										`nemid` = '". DBM::escape($nemid) ."',
+										`accept_in_project` = '".DBM::escape($accept_in_project)."',
+										`similar_projects` = '".DBM::escape($similar_projects)."',
+										`contact_me` = '".DBM::escape($contact_me)."',
+										`newsletter` = '".DBM::escape($newsletter)."'
 							";
 			// die($insert_query);
 			//die(json_encode(array('query' => $insert_query)));
@@ -152,10 +173,11 @@ $url = CONSENT_URL;
 							$query = "SELECT * FROM `bc_disease` WHERE `id` = ".$v.";";
 							if($query = DBM::queryData($query, $database_link)) {
 								while($row = DBM::fetchObject($query)) {
-									$query1="INSERT INTO `bc_user_disease`
+									$query1 = "INSERT INTO 
+													`bc_user_disease`
 														SET
-															`user_id` = ". DBM::escape($insert_user_id) .",
-															`disease_id` = ". DBM::escape($v) ."
+													`user_id` = ". DBM::escape($insert_user_id) .",
+													`disease_id` = ". DBM::escape($v) ."
 													";
 									DBM::query($query1, $database_link);
 									$dis[] = $row->title;
@@ -172,10 +194,11 @@ $url = CONSENT_URL;
 									if($rownum>0) {
 										$insertNew = false;
 										while($row = DBM::fetchObject($query)) {
-											$query1="INSERT INTO `bc_user_disease`
+											$query1 = "INSERT INTO 
+															`bc_user_disease`
 																SET
-																	`user_id` = ". DBM::escape($insert_user_id) .",
-																	`disease_id` = ". $row->pk ."
+															`user_id` = ". DBM::escape($insert_user_id) .",
+															`disease_id` = ". $row->pk ."
 															";
 											DBM::query($query1, $database_link);
 										}
@@ -183,18 +206,20 @@ $url = CONSENT_URL;
 								}
 
 								if($insertNew) {
-									$query = "INSERT INTO `bc_disease`
-														SET
-															`title` = '". DBM::escape(trim($v)) ."',
-															`language` = '" . DBM::escape($siteData['language']) . "',
-															`active` = 'N';
+									$query = "INSERT INTO 
+														`bc_disease`
+															SET
+														`title` = '". DBM::escape(trim($v)) ."',
+														`language` = '" . DBM::escape($siteData['language']) . "',
+														`active` = 'N';
 									";
 									if( $query = DBM::query($query,$database_link) ) {
 										$disease_id = DBM::insertID($database_link);
-										$query1="INSERT INTO `bc_user_disease`
+										$query1 = "INSERT INTO 
+														`bc_user_disease`
 															SET
-																`user_id` = ". DBM::escape($insert_user_id) .",
-																`disease_id` = ". DBM::escape($disease_id) ."
+														`user_id` = ". DBM::escape($insert_user_id) .",
+														`disease_id` = ". DBM::escape($disease_id) ."
 														";
 
 										DBM::query($query1, $database_link);
@@ -211,15 +236,19 @@ $url = CONSENT_URL;
 								'storebox_email' => $sbemail,
 								'storebox_phone' => $sbphone,
 								'registration_date' => $registration_date,
-								'nemid' =>  $nemid
+								'nemid' =>  $nemid,
+								'accept_in_project' =>  $accept_in_project,
+								'similar_projects' =>  $similar_projects,
+								'contact_me' =>  $contact_me,
+								'newsletter' =>  $newsletter
 							);
-
+							
 							// use key 'http' even if you send the request to https://...
 							$options = array(
 							    'http' => array(
-							        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-							        'method'  => 'POST',
-							        'content' => http_build_query(array('data' => json_encode($data)))
+							    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+							    'method'  => 'POST',
+							    'content' => http_build_query(array('data' => json_encode($data)))
 							    )
 							);
 							$context  = stream_context_create($options);

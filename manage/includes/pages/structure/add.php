@@ -165,10 +165,10 @@ if (isset($_POST['doAdd'])) {
                         <div class="btn-group"> <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Default <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li data-value="" class="active">No Icon</li>
-                                <li data-value="icon-about"><img src="bootstrap/img/1.png"/></li>
-                                <li data-value="icon-how"><img src="bootstrap/img/2.png"/></li>
-                                <li data-value="icon-running"><img src="bootstrap/img/3.png"/></li>
-                                <li data-value="icon-who"><img src="bootstrap/img/4.png"/></li>
+                                <li data-value="icon-running"><img src="bootstrap/img/1.png"/></li>
+                                <li data-value="icon-who"><img src="bootstrap/img/2.png"/></li>
+                                <li data-value="icon-how"><img src="bootstrap/img/3.png"/></li>
+                                <li data-value="icon-about"><img src="bootstrap/img/4.png"/></li>
                                 <li data-value="icon-enroll"><img src="bootstrap/img/5.png"/></li>
                                 <li data-value="icon-task"><img src="bootstrap/img/6.png"/></li>
                                 <li data-value="icon-health"><img src="bootstrap/img/7.png"/></li>

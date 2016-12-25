@@ -234,6 +234,40 @@ function finish() {
 
     //submit form
 
+    var questcheck = true;
+
+    $("div[data-step='questionnaire'] input[type='radio']:checked").each(function(){
+      if($(this).attr('data-correct') != '1') {
+        questcheck = false;
+        $(this).next().css('color', 'red');
+      }
+    });
+
+    if(!questcheck) {
+      $('html, body').animate({
+        scrollTop: $("div[data-step='questionnaire']").offset().top
+      });
+      $('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+ $('div[data-step="questionnaire"]').attr('data-error') +'</div>').insertAfter($("div[data-step='questionnaire'] h1"));
+      return false;
+    }
+
+    if(!validationSteps.questionnaire()) {
+      $('html, body').animate({
+        scrollTop: $("div[data-step='questionnaire']").offset().top
+      });
+
+      return false;
+    }
+
+    $("div[data-step='disease'] .alert").remove();
+    if(!validationSteps.disease()) {
+      $('html, body').animate({
+        scrollTop: $("div[data-step='disease']").offset().top
+      });
+      $(validationMessage('Please choose disease')).insertAfter($("div[data-step='disease'] h1").eq(1));
+      return false;
+    }
+
     // $('.registration-step.active').removeClass('active');
     if($("#nemid").val() == '')
     {
@@ -362,7 +396,7 @@ $('#registration-form').submit(function(e) {
               return;
             }
             if(data.error == false) {
-              window.location.hash="finish";
+              window.location.hash="final";
             }
             else if(data.error.questionary != null){
               window.location.hash="errors";
@@ -378,7 +412,8 @@ $('#registration-form').submit(function(e) {
               $(".btn-submit i").remove();
               $(".btn-submit").removeAttr("disabled");
             }
-            console.log(typeof data);
+
+            console.log(data);
           },
           // vvv---- This is the new bit
           error:   function(jqXHR, textStatus, errorThrown) {
@@ -451,23 +486,28 @@ window.location.hash=1;
 window.onhashchange = function() {
   currentStep=window.location.href.split('#')[1];
   var returnTo1 = false;
-  var currentEl = $('.registration-step[data-step="'+currentStep+'"]');
-  if(currentEl.prev().length != 0) {
-    var allPrevEl=currentEl.prevAll();
-    allPrevEl.each(function(){
-      if(typeof validationSteps[$(this).attr('data-step')] != 'undefined') {
-          if(!validationSteps[$(this).attr('data-step')]()) {
-            returnTo1=true;
-          }
-      }
+  // var currentEl = $('.registration-step[data-step="'+currentStep+'"]');
+  // if(currentEl.prev().length != 0) {
+  //   var allPrevEl=currentEl.prevAll();
+  //   allPrevEl.each(function(){
+  //     if(typeof validationSteps[$(this).attr('data-step')] != 'undefined') {
+  //         if(!validationSteps[$(this).attr('data-step')]()) {
+  //           returnTo1=true;
+  //         }
+  //     }
+  //
+  //     console.log(typeof validationSteps[$(this).attr('data-step')]);
+  //   });
+  // }
+  // if(returnTo1) {
+  //   window.location.hash=1;
+  // } else {
+  //   $('.registration-step.active').removeClass('active');
+  //   $('.registration-step[data-step="' + currentStep + '"]').addClass('active');
+  // }
 
-      console.log(typeof validationSteps[$(this).attr('data-step')]);
-    });
-  }
-  if(returnTo1) {
-    window.location.hash=1;
-  } else {
-    $('.registration-step.active').removeClass('active');
-    $('.registration-step[data-step="' + currentStep + '"]').addClass('active');
+  if(currentStep == 'final') {
+    $('.registration-step').hide();
+    $('div[data-step="final"]').show();
   }
 }

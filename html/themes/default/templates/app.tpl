@@ -7,15 +7,15 @@
     <div class="row">
       <div class="form-horizontal col-sm-6">
         <div class="form-group">
-          <label for="email">{$language.email}</label>
-          <input id="email" name="email" class="form-control" type="text">
+            <input id="nemid" name="nemid" class="form-control" type="hidden" readonly="">
+            <button class="btn btn-link auth" type="button">{$language.authenticate_nemid}</button>
           {if isset($error)}
             <div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{$error}</div>
           {/if}
         </div>
       </div>
     </div>
-    <input type="submit" value="Remove" class="btn btn-link">
+    <input type="submit" value="{$language.remove}" class="btn btn-link">
   </form>
   {else}
   <div class="alert alert-success">

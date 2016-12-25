@@ -11,7 +11,7 @@ $config['database']['database'] = 'research';
 
 // General
 
-$config['languages'] = array('en', 'dk');
+$config['languages'] = array('en', 'dk', 'se');
 $config['site_url'] = 'http://localhost:8888/InformedConsent-app/manage/';
 $config['file_path'] = 'http://localhost:8888/InformedConsent-app/html/res/images/';
 $config['fpath'] = '../html/res/images/';

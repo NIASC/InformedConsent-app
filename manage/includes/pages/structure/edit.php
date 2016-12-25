@@ -179,16 +179,16 @@ $real_slug = end($slug_array);
                         <div class="btn-group"> <a class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown" href="#">Default <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li data-value="">No Icon</li>
-                                <li data-value="icon-about" class="<?php echo bootstrap_dd('icon-about', $get_section_data->icon); ?>">
+                                <li data-value="icon-running" class="<?php echo bootstrap_dd('icon-running', $get_section_data->icon); ?>">
                                 	<img src="bootstrap/img/1.png"/>
                                 </li>
-                                <li data-value="icon-how" class="<?php echo bootstrap_dd('icon-how', $get_section_data->icon); ?>">
+                                <li data-value="icon-who" class="<?php echo bootstrap_dd('icon-who', $get_section_data->icon); ?>">
                                 	<img src="bootstrap/img/2.png"/>
                                 </li>
-                                <li data-value="icon-running" class="<?php echo bootstrap_dd('icon-running', $get_section_data->icon); ?>">
+                                <li data-value="icon-how" class="<?php echo bootstrap_dd('icon-how', $get_section_data->icon); ?>">
                                 	<img src="bootstrap/img/3.png"/>
                                 </li>
-                                <li data-value="icon-who" class="<?php echo bootstrap_dd('icon-who', $get_section_data->icon); ?>">
+                                <li data-value="icon-about" class="<?php echo bootstrap_dd('icon-about', $get_section_data->icon); ?>">
                                 	<img src="bootstrap/img/4.png"/>
                                 </li>
                                 <li data-value="icon-enroll" class="<?php echo bootstrap_dd('icon-enroll', $get_section_data->icon); ?>">
